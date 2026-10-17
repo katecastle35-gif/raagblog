@@ -1,0 +1,138 @@
+:root {
+  --green: #2e7d32;
+  --violet: #6a1b9a;
+  --text: #2b2340;
+  --muted: #5e5873;
+  --card: rgba(255, 255, 255, 0.85);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  color: var(--text);
+  min-height: 100vh;
+  background-color: #c8e6c9;
+  /* Layered greens: soft glows over a fine diagonal weave over a base gradient */
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(165, 214, 167, 0.9), transparent 40%),
+    radial-gradient(circle at 85% 35%, rgba(129, 199, 132, 0.7), transparent 45%),
+    radial-gradient(circle at 30% 85%, rgba(102, 187, 106, 0.55), transparent 45%),
+    radial-gradient(circle at 80% 90%, rgba(200, 230, 201, 0.9), transparent 40%),
+    repeating-linear-gradient(45deg, rgba(27, 94, 32, 0.05) 0 2px, transparent 2px 22px),
+    repeating-linear-gradient(-45deg, rgba(27, 94, 32, 0.05) 0 2px, transparent 2px 22px),
+    linear-gradient(160deg, #e8f5e9 0%, #c8e6c9 35%, #a5d6a7 70%, #81c784 100%);
+  background-attachment: fixed;
+}
+
+/* Hanging garlands along the page edges (static) */
+.garland {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  background: url('../images/garland.svg') repeat-y;
+  background-size: 48px 100px;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+}
+.garland-left { left: 0; }
+.garland-right { right: 0; transform: scaleX(-1); }
+
+/* Festoon hanging under the header */
+.garland-top {
+  height: 46px;
+  margin-top: -4px;
+  background: url('../images/garland-top.svg') repeat-x center top;
+  background-size: 120px 46px;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+}
+
+@media (max-width: 1000px) {
+  .garland { width: 28px; background-size: 28px 58px; }
+  :root { --side: 2.5rem; }
+}
+@media (max-width: 480px) {
+  .garland { width: 20px; background-size: 20px 42px; }
+  :root { --side: 1.75rem; }
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: clamp(1.75rem, 6vw, 3rem) 1rem;
+  background: linear-gradient(to right, var(--green), var(--violet));
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+header h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 6vw, 3rem);
+  letter-spacing: 1px;
+}
+
+/* Content */
+section {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem var(--side, 1rem);
+}
+
+.about {
+  text-align: center;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  font-weight: 600;
+  color: #1b3a1f;
+  padding-top: 0.5rem;
+  padding-bottom: 0;
+}
+
+.tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.track {
+  background: var(--card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(74, 20, 140, 0.12);
+  border-top: 4px solid transparent;
+  border-image: linear-gradient(to right, var(--green), var(--violet)) 1;
+}
+
+.track video {
+  display: block;
+  width: 100%;
+  max-height: 70vh;
+  background: #000;
+}
+
+.track-info { padding: 1.25rem 1.5rem 1.5rem; }
+
+.track-info h2 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  color: var(--violet);
+}
+
+.track-info dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.35rem 1rem;
+  margin: 0;
+}
+.track-info dt {
+  font-weight: 600;
+  color: var(--green);
+}
+.track-info dd { margin: 0; }
+
+.composer {
+  margin: 0.75rem 0 0;
+  font-style: italic;
+  color: var(--muted);
+}
